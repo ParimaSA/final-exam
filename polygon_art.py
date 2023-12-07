@@ -1,6 +1,15 @@
 import turtle
 import random
 
+# class Polygon:
+#     def __init__(self):
+#         self.num_sides
+#         self.size
+#         self.orientation
+#         self.location
+#         self.color
+#         self.border_size
+
 def draw_polygon(num_sides, size, orientation, location, color, border_size):
     turtle.penup()
     turtle.goto(location[0], location[1])
@@ -28,7 +37,7 @@ orientation = random.randint(0, 90)
 location = [random.randint(-300, 300), random.randint(-200, 200)]
 color = get_new_color()
 border_size = random.randint(1, 10)
-draw_polygon(num_sides, size, orientation, location, color, border_size)
+# draw_polygon(num_sides, size, orientation, location, color, border_size)
 
 # specify a reduction ratio to draw a smaller polygon inside the one above
 reduction_ratio = 0.618
@@ -47,6 +56,5 @@ size *= reduction_ratio
 
 # draw the second polygon embedded inside the original 
 draw_polygon(num_sides, size, orientation, location, color, border_size)
-
 # hold the window; close it by clicking the window close 'x' mark
 turtle.done()
