@@ -1,14 +1,6 @@
 import turtle
 import random
 
-# class Polygon:
-#     def __init__(self):
-#         self.num_sides
-#         self.size
-#         self.orientation
-#         self.location
-#         self.color
-#         self.border_size
 
 def draw_polygon(num_sides, size, orientation, location, color, border_size):
     turtle.penup()

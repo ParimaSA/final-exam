@@ -39,7 +39,7 @@ class Polygon:
 
     @staticmethod
     def get_new_color():
-        return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
 
 def draw_all(num_p, num_side, multiply):
@@ -53,35 +53,70 @@ def draw_all(num_p, num_side, multiply):
             p.draw_polygon()
 
 
+class Draw_Art:
+    def __init__(self, num_pic = 30, random = False, inside = False, num_side = 3):
+        self.num_pic = num_pic
+        self.random = random
+        self.inside = inside
+        self.num_side = num_side
+
+    def draw(self):
+        if self.random:
+            self.draw_random_side()
+        else:
+            self.draw_simple_side()
+
+    def draw_random_side(self):
+        for _ in range(self.num_pic):
+            num_side = random.randint(3, 5)
+            p = Polygon(num_side)
+            if self.inside:
+                p.draw_inside()
+            else:
+                p.draw_polygon()
+
+    def draw_simple_side(self):
+        for _ in range(self.num_pic):
+            p = Polygon(self.num_side)
+            if self.inside:
+                p.draw_inside()
+            else:
+                p.draw_polygon()
+
+
 num_pic = random.randint(20,40)
+all_pic = Draw_Art(num_pic)
+
 choice = input('Which art do you want to generate? Enter a number between 1 to 8,inclusive: ')
-if choice not in [str(x) for x in range(1,9)]:
+if choice not in [str(x) for x in range(1, 9)]:
     choice = input('Which art do you want to generate? Enter a number between 1 to 8,inclusive: ')
+
 turtle.speed(0)
 turtle.bgcolor('black')
 turtle.tracer(0)
 turtle.colormode(255)
+
+# customize the polygon to be the following art
 if choice == '1':
-    draw_all(num_pic, 3, False)
+    pass  # original one triangle with no polygon inside
 elif choice == '2':
-    draw_all(num_pic, 4, False)
+    all_pic.num_side = 4  # change side to 4
 elif choice == '3':
-    draw_all(num_pic, 5, False)
+    all_pic.num_side = 5  # change side to 5
 elif choice == '4':
-    for i in range(num_pic):
-        num_s = random.randint(3,5)
-        p = Polygon(num_s)
-        p.draw_polygon()
+    all_pic.random = True  # change to be random side
 elif choice == '5':
-    draw_all(num_pic, 3, True)
+    all_pic.inside = True  # triangle but to polygon inside
 elif choice == '6':
-    draw_all(num_pic, 4, True)
+    all_pic.inside = True  # polygon inside
+    all_pic.num_side = 4   # change side to 4
 elif choice == '7':
-    draw_all(num_pic, 5, True)
+    all_pic.inside = True  # polygon inside
+    all_pic.num_side = 5   # change side to 5
 else:
-    for i in range(num_pic):
-        num_s = random.randint(3, 5)
-        p = Polygon(num_s)
-        p.draw_inside()
+    all_pic.inside = True  # polygon inside
+    all_pic.random = True  # change to random side
+
+all_pic.draw()  # draw pic after customize
 
 turtle.done()
